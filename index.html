@@ -61,7 +61,8 @@
             text-align: center;
         }
         .reminder {
-            margin-top: 20px;
+            margin-top: 15px;
+            margin-bottom: 15px;
             font-size: 0.9em;
             color: #555;
         }
@@ -83,13 +84,15 @@
             <label for="input3">Folder:</label>
             <input type="text" id="input3" placeholder="Enter folder name" required>
 
+            <!-- 提醒文字放置在 Submit 按鈕之上 -->
+            <div class="reminder">
+                <p>1. Knowledge base creation is scheduled every 10 minutes. Please be patient.</p>
+                <p>2. The total knowledge base usage is limited to 20 GB. Updates are not possible if the limit is exceeded.</p>
+            </div>
+
             <button type="button" id="submit-button">Submit</button>
         </form>
         <p id="result"></p>
-        <div class="reminder">
-            <p>1. Knowledge base creation is scheduled every 10 minutes. Please be patient.</p>
-            <p>2. The total knowledge base usage is limited to 20 GB. Updates are not possible if the limit is exceeded.</p>
-        </div>
     </div>
 
     <script>
