@@ -60,6 +60,14 @@
             color: #0078d4;
             text-align: center;
         }
+        .reminder {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .reminder p {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -78,6 +86,10 @@
             <button type="button" id="submit-button">Submit</button>
         </form>
         <p id="result"></p>
+        <div class="reminder">
+            <p>1. Knowledge base creation is scheduled every 10 minutes. Please be patient.</p>
+            <p>2. The total knowledge base usage is limited to 20 GB. Updates are not possible if the limit is exceeded.</p>
+        </div>
     </div>
 
     <script>
