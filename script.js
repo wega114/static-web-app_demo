@@ -16,15 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
         else {
             // Show a message box with the input values
             alert("The team does not have the required permissions and cannot register.\nSubmitted:\nSite URL: ".concat(siteName, "\nChannel Name: ").concat(channelName, "\nFolder: ").concat(folderName));
-            // 外部應用的結束處理邏輯
-            var urlParams = new URLSearchParams(window.location.search);
-            var callbackUrl = urlParams.get('callback');
-            if (callbackUrl) {
-                // 在回調 URL 中附加參數 `result=true`，並返回伺服器
-                var updatedCallbackUrl = new URL(callbackUrl);
-                updatedCallbackUrl.searchParams.set('result', 'true'); // 加入 result=true
-                window.location.href = updatedCallbackUrl.toString();
-            }
         }
     });
 });
