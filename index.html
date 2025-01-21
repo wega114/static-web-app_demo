@@ -106,7 +106,7 @@
             // Initialize Microsoft Teams SDK
             microsoftTeams.initialize();
 
-            submitButton.addEventListener('click', function () {
+            submitButton.addEventListener('click', async function () {
                 const teamName = input1.value.trim();
                 const channelName = input2.value.trim();
                 const folderName = input3.value.trim();
@@ -116,8 +116,40 @@
                     return;
                 }
 
+                // API URL
+                const apiUrl = `http://funcappusi250121reg.azurewebsites.net/api/http_trigger?teamName=${encodeURIComponent(teamName)}&channelName=${encodeURIComponent(channelName)}&folderName=${encodeURIComponent(folderName)}`;
+                let save = false;
+                try {
+                    // Send API request
+                    const response = await fetch(apiUrl, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'text/plain', // 期待 text/plain 响应
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    // 检查响应状态
+                    if (response.ok) {
+                        const data = await response.json(); // 解析為 JSON 對象
+                        const status = data.status; // 提取 status 值
+                        result.textContent = `Success: Status is ${status}. Full Response: ${JSON.stringify(data)}`;
+                        if(status)
+                        {
+                            save = ture;
+                        }
+                        
+                    } else {
+                        // 当 response.ok 为 false 时，显示状态和状态文本
+                        const errorText = await response.text();
+                        result.textContent = `Error: ${response.status} - ${response.statusText}. ${errorText}`;
+                    }
+                } catch (error) {
+                    result.textContent = `Request failed: ${error.message}`;
+                }
+
                 // Show a confirmation
-                result.textContent = `Configuration submitted: Team - ${teamName}, Channel - ${channelName}, Folder - ${folderName}`;
+                //result.textContent = `Configuration submitted: Team - ${teamName}, Channel - ${channelName}, Folder - ${folderName}`;
 
                 // Save the configuration and notify Teams
                 microsoftTeams.settings.setSettings({
@@ -131,8 +163,7 @@
                     saveEvent.notifySuccess();
                 });
 
-                // Notify Teams that configuration is complete
-                microsoftTeams.settings.setValidityState(true);
+                microsoftTeams.settings.setValidityState(save);
             });
         });
     </script>
