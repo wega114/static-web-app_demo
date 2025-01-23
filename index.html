@@ -83,7 +83,7 @@
 
             <label for="input3">Folder:</label>
             <input type="text" id="input3" placeholder="Enter folder name" required>
-
+            <input type="hidden" id="input4" >
             <!-- 提醒文字放置在 Submit 按鈕之上 -->
             <div class="reminder">
                 <p>1. Knowledge base creation is scheduled every 10 minutes. Please be patient.</p>
@@ -121,6 +121,7 @@
                 //document.getElementById("teamName").innerText = teamName || "N/A";
                 input1.value = teamName;
                 input2.value = channelName;
+                input4.value = siteName.split('/').pop();
             }).catch((error) => {
                 console.error("Failed to get context:", error);
             });
@@ -134,6 +135,7 @@
             const input1 = document.getElementById('input1');
             const input2 = document.getElementById('input2');
             const input3 = document.getElementById('input3');
+            const input4 = document.getElementById('input4');
             const submitButton = document.getElementById('submit-button');
             const result = document.getElementById('result');
 
@@ -141,7 +143,7 @@
             microsoftTeams.initialize();
 
             submitButton.addEventListener('click', async function () {
-                const teamName = input1.value.trim();
+                const teamName = input4.value.trim();
                 const channelName = input2.value.trim();
                 const folderName = input3.value.trim();
 
