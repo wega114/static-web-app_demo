@@ -110,7 +110,7 @@
             microsoftTeams.app.getContext().then((context) => {
                 // 取得 Site Name 和 Channel Name
                 console.error("context",context);
-                const siteName = context.teamSitePath; // Teams 對應的 SharePoint 網址
+                const siteName = context.sharePointSite?.teamSitePath; // Teams 對應的 SharePoint 網址
                 const channelName = context.channel?.displayName; // 頻道名稱
     
                 // 顯示在頁面中
