@@ -89,13 +89,41 @@
                 <p>1. Knowledge base creation is scheduled every 10 minutes. Please be patient.</p>
                 <p>2. The total knowledge base usage is limited to 20 GB. Updates are not possible if the limit is exceeded.</p>
             </div>
-
+            <h1>Microsoft Teams Context</h1>
+            <p>Site Name: <span id="siteName"></span></p>
+            <p>Channel Name: <span id="channelName"></span></p>
             <button type="button" id="submit-button">Submit</button>
         </form>
         <p id="result"></p>
     </div>
-
+    <script
+        src="https://res.cdn.office.net/teams-js/2.22.0/js/MicrosoftTeams.min.js"
+        integrity="sha384-WSG/sWulIv7rel5TnFlH8JTpxl2OxzZh9Lux2mIzBFiTRLFvMBeFv9VURu/3vQdx"
+        crossorigin="anonymous"
+    ></script>
     <script>
+        // 確保 Microsoft Teams SDK 已加載
+        if (microsoftTeams) {
+            // 初始化 Teams 應用
+            microsoftTeams.app.initialize().then(() => {
+            // 獲取 Teams Context
+            microsoftTeams.app.getContext().then((context) => {
+                // 取得 Site Name 和 Channel Name
+                const siteName = context.sharePointSiteUrl; // Teams 對應的 SharePoint 網址
+                const channelName = context.channel?.displayName; // 頻道名稱
+    
+                // 顯示在頁面中
+                document.getElementById("siteName").innerText = siteName || "N/A";
+                document.getElementById("channelName").innerText = channelName || "N/A";
+            }).catch((error) => {
+                console.error("Failed to get context:", error);
+            });
+            }).catch((error) => {
+            console.error("Failed to initialize Teams app:", error);
+            });
+        } else {
+            console.error("Microsoft Teams SDK not loaded!");
+        }
         document.addEventListener('DOMContentLoaded', function () {
             const input1 = document.getElementById('input1');
             const input2 = document.getElementById('input2');
