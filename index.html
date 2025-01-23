@@ -76,10 +76,10 @@
         <h1>Apply for TeamBot</h1>
         <form id="demo-form">
             <label for="input1">Team Name:</label>
-            <input type="text" id="input1" placeholder="Enter team name" required>
+            <input type="text" id="input1" placeholder="Enter team name" readonly>
 
             <label for="input2">Channel Name:</label>
-            <input type="text" id="input2" placeholder="Enter channel name" required>
+            <input type="text" id="input2" placeholder="Enter channel name" readonly>
 
             <label for="input3">Folder:</label>
             <input type="text" id="input3" placeholder="Enter folder name" required>
@@ -89,10 +89,10 @@
                 <p>1. Knowledge base creation is scheduled every 10 minutes. Please be patient.</p>
                 <p>2. The total knowledge base usage is limited to 20 GB. Updates are not possible if the limit is exceeded.</p>
             </div>
-            <h1>Microsoft Teams Context</h1>
+            <!--h1>Microsoft Teams Context</h1>
             <p>Site Name: <span id="siteName"></span></p>
             <p>Channel Name: <span id="channelName"></span></p>
-            <p>Team Name: <span id="teamName"></span></p>
+            <p>Team Name: <span id="teamName"></span></p-->
             <button type="button" id="submit-button">Submit</button>
         </form>
         <p id="result"></p>
@@ -116,9 +116,12 @@
                 const teamName = context.team?.displayName;
     
                 // 顯示在頁面中
-                document.getElementById("siteName").innerText = siteName || "N/A";
-                document.getElementById("channelName").innerText = channelName || "N/A";
-                document.getElementById("teamName").innerText = teamName || "N/A";
+                //document.getElementById("siteName").innerText = siteName || "N/A";
+                //document.getElementById("channelName").innerText = channelName || "N/A";
+                //document.getElementById("teamName").innerText = teamName || "N/A";
+                input1.value = teamName;
+                input2.value = channelName;
+                input1.
             }).catch((error) => {
                 console.error("Failed to get context:", error);
             });
