@@ -92,6 +92,7 @@
             <h1>Microsoft Teams Context</h1>
             <p>Site Name: <span id="siteName"></span></p>
             <p>Channel Name: <span id="channelName"></span></p>
+            <p>Team Name: <span id="teamName"></span></p>
             <button type="button" id="submit-button">Submit</button>
         </form>
         <p id="result"></p>
@@ -112,10 +113,12 @@
                 console.error("context",context);
                 const siteName = context.sharePointSite?.teamSitePath; // Teams 對應的 SharePoint 網址
                 const channelName = context.channel?.displayName; // 頻道名稱
+                const teamName = context.team?.displayName;
     
                 // 顯示在頁面中
                 document.getElementById("siteName").innerText = siteName || "N/A";
                 document.getElementById("channelName").innerText = channelName || "N/A";
+                document.getElementById("teamName").innerText = teamName || "N/A";
             }).catch((error) => {
                 console.error("Failed to get context:", error);
             });
