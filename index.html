@@ -113,7 +113,7 @@
                 const channelName = context.channel?.displayName; // 頻道名稱
     
                 // 顯示在頁面中
-                document.getElementById("siteName").innerText = siteName || "N/A";
+                document.getElementById("teamSitePath").innerText = siteName || "N/A";
                 document.getElementById("channelName").innerText = channelName || "N/A";
             }).catch((error) => {
                 console.error("Failed to get context:", error);
